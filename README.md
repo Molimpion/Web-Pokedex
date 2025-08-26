@@ -1,38 +1,46 @@
-# Web Portfolio
-Welcome to my personal portfolio! This project showcases my academic background, technical skills, and professional journey in web development and technology.
+Web-Pokédex
+Bem-vindo ao projeto Web-Pokédex! Esta aplicação é uma Pokédex interativa e responsiva, construída para explorar o vasto mundo dos Pokémon.
 
-## 🚀 About the Project
+🚀 Sobre o Projeto
+Esta Pokédex foi construída com o objetivo de:
 
-This portfolio was built to present:
+Consumir dados em tempo real da PokéAPI.
 
-- My academic journey and certifications
-- My skills in web development (HTML, CSS, JavaScript, React, etc.)
-- Contact information
-- A clean and responsive user interface
+Apresentar informações detalhadas sobre os Pokémon, incluindo as suas evoluções.
 
-## 📌 Technologies Used
+Oferecer uma interface de utilizador limpa, responsiva e com um design temático.
 
-- HTML5
-- CSS3
-- JavaScript
-- Bootstrap
-- AOS (Animate On Scroll)
-- Font Awesome
+Servir como um projeto prático para demonstrar competências em desenvolvimento web front-end.
 
-## 🛠 Features
+📌 Tecnologias Utilizadas
+HTML5
 
-- Interactive sections with scroll animations
-- Clickable cards linked to institutions and contacts
-- Responsive design for desktop and mobile devices
+CSS3 (Flexbox, Animações)
 
-## 🧠 Future Improvements
+JavaScript (ES6+, Async/Await, Fetch API)
 
-- Add dark mode support
-- Add downloadable CV
-- Add project showcase section
+PokéAPI
 
-## View
-You can visualize the resume online here:  
-✔️ [https://molimpion.github.io/Portifolio/](https://molimpion.github.io/Portifolio/)
+🛠 Funcionalidades
+Pesquisa de Pokémon por nome ou número.
 
+Visualização da cadeia de evolução interativa.
 
+Design responsivo para uma experiência perfeita em computadores e telemóveis.
+
+Interface temática com um loader animado em forma de Pokébola.
+
+🧠 Melhorias Futuras
+Adicionar uma secção de estatísticas (HP, Ataque, Defesa, etc.).
+
+Adicionar um botão para ouvir o som do Pokémon.
+
+Adicionar um botão para ver a versão "shiny".
+
+Implementar um sistema de favoritos com localStorage.
+
+📍 Localização: [SUA CIDADE E ESTADO AQUI]
+
+Ver o Projeto
+Pode visualizar a Pokédex online aqui:
+✔️ [COLE O LINK DO SEU PROJETO AQUI]
