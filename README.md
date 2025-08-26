@@ -44,5 +44,7 @@ Esta Pokédex foi construída com o objetivo de:
 
 ## Ver o Projeto
 
-Pode visualizar a Pokédex online aqui:  
-✔️ COLE O LINK DO SEU PROJETO AQUI
+Está pronto para capturar todos os Pokémon?  
+⚡️ Acesse a Pokédex online aqui e comece sua jornada:  
+✔️ ✔️ [https://molimpion.github.io/Web-Pokedex/](https://molimpion.github.io/Web-Pokedex/)
+
