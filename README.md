@@ -42,14 +42,6 @@ Esta Pokédex foi construída com o objetivo de:
 
 ---
 
-## 📬 Contacto
-
-- 📧 Email: SEU EMAIL AQUI  
-- 🌐 LinkedIn: SEU LINKEDIN AQUI  
-- 📍 Localização: SUA CIDADE E ESTADO AQUI  
-
----
-
 ## Ver o Projeto
 
 Pode visualizar a Pokédex online aqui:  
