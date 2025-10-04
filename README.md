@@ -2,8 +2,6 @@
 
 > Uma Pokédex completa, agora como um PWA (Progressive Web App) instalável, com funcionalidade de captura de "Pokémon" usando a câmera do seu dispositivo!
 
-[![Ver Projeto Online](https://img.shields.io/badge/Ver_Projeto_Online-dc2626?style=for-the-badge&logo=github&logoColor=white)](https://molimpion.github.io/Web-Pokedex/)
-
 ---
 
 ## 🧭 Sobre o projeto
@@ -45,3 +43,6 @@ Este projeto é de código aberto e está disponível sob a licença MIT. Sinta-
 ---
 
 ### Agora é hora de começar sua jornada Pokémon!
+
+[![Ver Projeto Online](https://img.shields.io/badge/Ver_Projeto_Online-dc2626?style=for-the-badge&logo=github&logoColor=white)](https://molimpion.github.io/Web-Pokedex/)
+
