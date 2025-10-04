@@ -2,7 +2,7 @@
 
 > Uma Pokédex completa, agora como um PWA (Progressive Web App) instalável, com funcionalidade de captura de "Pokémon" usando a câmera do seu dispositivo!
 
-[![Deploy with Netlify](https://www.netlify.com/img/deploy/button.svg)](https://molimpion.github.io/Web-Pokedex/)
+[![Ver Projeto Online](https://img.shields.io/badge/Ver_Projeto_Online-dc2626?style=for-the-badge&logo=github&logoColor=white)](https://molimpion.github.io/Web-Pokedex/)
 
 ---
 
@@ -38,31 +38,10 @@ Este projeto foi desenvolvido como parte de um desafio académico, com o objetiv
 
 ---
 
-## 📁 Estrutura do Projeto
-/
-├── icons/
-│   ├── icon-192x192.png
-│   └── icon-512x512.png
-├── index.html
-├── style.css
-├── script.js
-├── manifest.json
-├── sw.js
-└── README.md
-
----
-
 ## 📝 Licença
 
 Este projeto é de código aberto e está disponível sob a licença MIT. Sinta-se à vontade para o usar, modificar e distribuir.
 
 ---
 
-## 🙋‍♂️ Feito por
-
-**Manoel Olímpio**
-
-- [GitHub](https://github.com/Molimpion)
-- [LinkedIn](https://www.linkedin.com/in/molimpion/)
-
----
+### Agora é hora de começar sua jornada Pokémon!
