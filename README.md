@@ -1,47 +1,59 @@
-# Web-Pokédex
+Web-Pokédex 📸
+Uma Pokédex completa, agora como um PWA (Progressive Web App) instalável, com funcionalidade de captura de "Pokémon" usando a câmera do seu dispositivo!
 
-Bem-vindo ao **Web-Pokédex**, sua Pokédex interativa e responsiva para explorar o vasto universo dos Pokémon! 🐾
+🧭 Sobre o projeto
+A Web-Pokédex é uma aplicação web moderna que vai além de uma simples lista de Pokémon. Construída como um Progressive Web App, ela pode ser instalada no seu telemóvel e funcionar offline. O projeto combina a nostalgia do universo Pokémon com tecnologias web modernas, incluindo o acesso à câmera do dispositivo para uma funcionalidade de "captura" divertida e interativa.
 
----
+Este projeto foi desenvolvido como parte de um desafio académico, com o objetivo de aplicar conhecimentos de HTML, CSS, JavaScript, consumo de APIs e, finalmente, a transformação de uma aplicação web num PWA.
 
-## 🚀 Sobre o Projeto
+✨ Funcionalidades
+✅ Pesquisa Rápida: Encontre Pokémon por nome ou número.
 
-A Web-Pokédex foi criada para ser uma ferramenta prática e visualmente atraente, permitindo que fãs e desenvolvedores explorem dados reais da PokéAPI em tempo real. Com um design limpo e responsivo, esta aplicação oferece uma experiência envolvente, exibindo detalhes completos dos Pokémon, incluindo suas cadeias de evolução.
+✅ Cadeia de Evolução: Visualize a linha evolutiva completa de cada Pokémon.
 
----
+✅ Progressive Web App (PWA): Instale a Pokédex no ecrã principal do seu telemóvel e use-a mesmo sem ligação à internet.
 
-## 📌 Tecnologias Utilizadas
+✅ Captura de Pokémon: Uma funcionalidade interativa que usa a câmera do seu dispositivo para "capturar" um novo Pokémon (tirando uma foto sua).
 
-- **HTML5**  
-- **CSS3** (Flexbox, animações customizadas)  
-- **JavaScript** (ES6+, Async/Await, Fetch API)  
-- **PokéAPI** (para dados em tempo real dos Pokémon)  
+✅ Design Responsivo: Experiência de utilização otimizada para computadores, tablets e telemóveis.
 
----
+✅ Interface Temática: Design inspirado na Pokédex clássica, com um loader animado em formato de Pokébola.
 
-## 🛠 Funcionalidades Principais
+🚀 Tecnologias
+HTML5 (Estrutura Semântica)
 
-- Pesquisa rápida e precisa de Pokémon por nome ou número.  
-- Visualização dinâmica da cadeia de evolução, para entender cada etapa do crescimento dos Pokémon.  
-- Layout responsivo que garante ótima experiência em desktops, tablets e smartphones.  
-- Loader animado em formato de Pokébola para deixar a espera mais divertida.  
+CSS3 (Flexbox, Variáveis CSS, Animações)
 
----
+JavaScript (ES6+) (Async/Await, Fetch API, Manipulação do DOM)
 
-## 🧠 Melhorias Futuras
+PWA:
 
-- Adicionar uma seção detalhada de estatísticas (HP, Ataque, Defesa, etc.) para cada Pokémon.  
-- Implementar um botão para ouvir os sons característicos dos Pokémon.  
-- Criar uma opção para visualizar a versão "shiny" dos Pokémon.  
-- Desenvolver um sistema de favoritos usando `localStorage` para salvar suas capturas preferidas.  
+Web App Manifest (manifest.json)
 
----
+Service Worker (sw.js) para funcionalidade offline
 
-## ⚡️ Capture Todos os Pokémon!
+HTML Media Capture API para acesso à câmera
 
-Pronto para começar sua jornada e capturar todos os Pokémon?  
-Acesse a Pokédex online agora mesmo e mergulhe nesse mundo incrível!  
+PokéAPI como fonte de dados dos Pokémon
 
-🎯 [**Clique aqui para acessar a Web-Pokédex**](https://molimpion.github.io/Web-Pokedex/)  
+📁 Estrutura do Projeto
+/
+├── icons/
+│   ├── icon-192x192.png
+│   └── icon-512x512.png
+├── index.html
+├── style.css
+├── script.js
+├── manifest.json
+├── sw.js
+└── README.md
 
-Que a força dos Pikachu esteja com você! ⚡️⚡️
+📝 Licença
+Este projeto é de código aberto e está disponível sob a licença MIT. Sinta-se à vontade para o usar, modificar e distribuir.
+
+🙋‍♂️ Feito por
+Manoel Olímpio
+
+GitHub
+
+LinkedIn
