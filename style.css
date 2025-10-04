@@ -337,3 +337,10 @@ body {
     flex-direction: column;
   }
 }
+
+@media (max-width: 480px) {
+  .capture-pokemon-button {
+    font-size: 0.8rem; /* Diminui a fonte do botão de captura em ecrãs pequenos */
+    padding: 0.8rem 1.5rem;
+  }
+}
