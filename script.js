@@ -1,10 +1,9 @@
-// Aguarda a página carregar completamente antes de executar o código
 document.addEventListener('DOMContentLoaded', () => {
     // --- CONSTANTES E VARIÁVEIS GLOBAIS ---
     const API_BASE_URL = 'https://pokeapi.co/api/v2';
-    const MAX_POKEMON_ID = 1025; // Número máximo de Pokémon na API
+    const MAX_POKEMON_ID = 1025; // O número máximo de Pokémon a considerar
 
-    // Associa os elementos do HTML a variáveis para podermos usá-los no JavaScript
+    // Mapeamento dos elementos do HTML para fácil acesso
     const elements = {
         display: document.getElementById('pokemon-display'),
         content: document.getElementById('pokemon-content'),
@@ -21,36 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
         evolutionStages: document.getElementById('evolution-stages'),
     };
 
-    // Associa cada tipo de Pokémon a uma cor específica
-    const typeColors = {
-        grass:    { class: 'bg-green-500',  color: 'rgba(34, 197, 94, 0.3)' },
-        fire:     { class: 'bg-red-500',    color: 'rgba(239, 68, 68, 0.3)' },
-        water:    { class: 'bg-blue-500',   color: 'rgba(59, 130, 246, 0.3)' },
-        bug:      { class: 'bg-lime-500',   color: 'rgba(132, 204, 22, 0.3)' },
-        normal:   { class: 'bg-gray-400',   color: 'rgba(156, 163, 175, 0.3)' },
-        poison:   { class: 'bg-purple-600', color: 'rgba(147, 51, 234, 0.3)' },
-        electric: { class: 'bg-yellow-400', color: 'rgba(250, 204, 21, 0.3)' },
-        ground:   { class: 'bg-yellow-600', color: 'rgba(202, 138, 4, 0.3)' },
-        fairy:    { class: 'bg-pink-400',   color: 'rgba(244, 114, 182, 0.3)' },
-        fighting: { class: 'bg-orange-700', color: 'rgba(194, 65, 12, 0.3)' },
-        psychic:  { class: 'bg-pink-600',   color: 'rgba(219, 39, 119, 0.3)' },
-        rock:     { class: 'bg-yellow-700', color: 'rgba(161, 98, 7, 0.3)' },
-        ghost:    { class: 'bg-indigo-700', color: 'rgba(67, 56, 202, 0.3)' },
-        ice:      { class: 'bg-cyan-300',   color: 'rgba(103, 232, 249, 0.3)' },
-        dragon:   { class: 'bg-indigo-500', color: 'rgba(99, 102, 241, 0.3)' },
-        dark:     { class: 'bg-gray-800',   color: 'rgba(31, 41, 55, 0.3)' },
-        steel:    { class: 'bg-gray-500',   color: 'rgba(107, 114, 128, 0.3)' },
-        flying:   { class: 'bg-sky-400',    color: 'rgba(56, 189, 248, 0.3)' }
-    };
+    let currentPokemon = {}; // Guarda os dados do Pokémon que está a ser exibido
 
-    // Guarda os dados do Pokémon que está a ser mostrado
-    let currentPokemon = {};
+    // --- FUNÇÕES DE LÓGICA DA APLICAÇÃO ---
 
-    // --- FUNÇÕES DE LÓGICA PRINCIPAL ---
-
-    // Função para buscar dados na API
-    const fetchApiData = async (endpoint) => {
-        const response = await fetch(`${API_BASE_URL}/${endpoint}`);
+    // Função genérica para fazer pedidos à API
+    const fetchApiData = async (url) => {
+        const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`Erro na rede: ${response.status}`);
         }
@@ -59,93 +35,98 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Função principal que busca os dados de um Pokémon
     const fetchPokemon = async (identifier) => {
-        setLoadingState(true); // Mostra a animação de carregamento
+        setLoadingState(true);
         try {
-            // Busca os dados principais e os da espécie ao mesmo tempo para ser mais rápido
-            const pokemonData = await fetchApiData(`pokemon/${identifier.toString().toLowerCase()}`);
-            const speciesData = await fetchApiData(`pokemon-species/${identifier.toString().toLowerCase()}`);
+            // Busca os dados principais e os dados da espécie (para evolução)
+            const pokemonData = await fetchApiData(`${API_BASE_URL}/pokemon/${identifier.toString().toLowerCase()}`);
+            const speciesData = await fetchApiData(pokemonData.species.url);
             
-            // Combina as informações e guarda os dados do Pokémon atual
             currentPokemon = { ...pokemonData, speciesData };
-            renderPokemon(currentPokemon); // Mostra as informações do Pokémon na página
+            renderPokemon(currentPokemon);
             
-            // Se o Pokémon tiver evoluções, busca essas informações
+            // Se houver uma cadeia de evolução, busca e exibe
             if (speciesData?.evolution_chain?.url) {
-                const evolutionData = await fetch(speciesData.evolution_chain.url).then(res => res.json());
+                const evolutionData = await fetchApiData(speciesData.evolution_chain.url);
                 renderEvolutionChain(evolutionData.chain);
+            } else {
+                 elements.evolutionStages.innerHTML = '<p class="text-white text-xs">Sem evoluções</p>';
             }
+
         } catch (error) {
             console.error('Falha ao buscar Pokémon:', error);
-            showError(); // Mostra uma mensagem de erro na página
+            showError();
         } finally {
-            setLoadingState(false); // Esconde a animação de carregamento, quer tenha funcionado ou não
+            setLoadingState(false);
         }
     };
 
-    // --- FUNÇÕES DE RENDERIZAÇÃO (UI) ---
-
-    // Função para controlar a animação de carregamento
+    // Controla a exibição do loader e do conteúdo
     const setLoadingState = (isLoading) => {
         elements.loader.classList.toggle('hidden', !isLoading);
         elements.content.classList.toggle('hidden', isLoading);
-        elements.errorMessage.classList.add('hidden'); // Garante que a mensagem de erro está escondida
+        elements.errorMessage.classList.add('hidden'); // Esconde a mensagem de erro ao carregar
     };
 
-    // Função que mostra a mensagem de erro
+    // Exibe uma mensagem de erro se o Pokémon não for encontrado
     const showError = () => {
         elements.errorMessage.classList.remove('hidden');
         elements.content.classList.add('hidden');
     };
 
-    // Função que mostra as informações do Pokémon na página
+    // --- FUNÇÕES DE RENDERIZAÇÃO (EXIBIÇÃO NA PÁGINA) ---
+
+    // Exibe os dados do Pokémon no ecrã
     const renderPokemon = (data) => {
-        // Coloca a imagem, o nome e o número do Pokémon nos seus lugares
-        elements.image.src = data.sprites.other['official-artwork'].front_default || '';
+        elements.image.src = data.sprites.other['official-artwork'].front_default || './placeholder.png'; // Imagem de fallback
         elements.image.alt = `Imagem de ${data.name}`;
         elements.name.textContent = data.name;
-        elements.id.textContent = `#${data.id.toString().padStart(3, '0')}`;
+        elements.id.textContent = `#${data.id.toString().padStart(4, '0')}`;
         
-        // Limpa os tipos antigos e adiciona os novos
+        // Limpa e cria as "tags" de tipo
         elements.types.innerHTML = '';
         data.types.forEach(typeInfo => {
             const typeName = typeInfo.type.name;
-            const typeStyle = typeColors[typeName] || { class: 'bg-gray-500' };
             const typeElement = document.createElement('span');
             typeElement.textContent = typeName;
-            typeElement.className = `px-3 py-1 rounded-full text-white text-xs font-bold ${typeStyle.class}`;
+            // Adiciona a classe CSS correspondente ao tipo
+            typeElement.className = `type-tag type-${typeName}`;
             elements.types.appendChild(typeElement);
         });
 
-        // Muda a cor de fundo da área de visualização para combinar com o tipo do Pokémon
+        // Muda a cor de fundo do ecrã com base no primeiro tipo do Pokémon
         const primaryType = data.types[0].type.name;
-        elements.display.style.backgroundColor = (typeColors[primaryType] || { color: 'rgba(107, 114, 128, 0.3)' }).color;
+        elements.display.setAttribute('data-type', primaryType);
     };
 
-    // Função que mostra a linha de evolução
+    // Exibe a cadeia de evolução
     const renderEvolutionChain = async (chainData) => {
-        elements.evolutionStages.innerHTML = ''; // Limpa as evoluções anteriores
+        elements.evolutionStages.innerHTML = ''; // Limpa a secção
         const evolutionChain = parseEvolutionChain(chainData);
         
-        // Percorre cada Pokémon na linha de evolução
+        if (evolutionChain.length <= 1) {
+            elements.evolutionStages.innerHTML = '<p class="text-white text-xs font-pixel">Não possui outras evoluções</p>';
+            return;
+        }
+
         for (let i = 0; i < evolutionChain.length; i++) {
             const speciesName = evolutionChain[i];
             try {
-                // Busca os dados de cada evolução para mostrar a sua imagem
-                const pokemon = await fetchApiData(`pokemon/${speciesName}`);
+                // Busca os dados de cada Pokémon na cadeia
+                const pokemon = await fetchApiData(`${API_BASE_URL}/pokemon/${speciesName}`);
                 const stageDiv = document.createElement('div');
-                stageDiv.className = 'evolution-stage text-center';
+                stageDiv.className = 'evolution-stage';
                 stageDiv.innerHTML = `
-                    <img src="${pokemon.sprites.front_default}" alt="${speciesName}" class="mx-auto">
-                    <p class="capitalize">${speciesName}</p>
+                    <img src="${pokemon.sprites.front_default || './placeholder.png'}" alt="${speciesName}" class="mx-auto drop-shadow-md">
+                    <p class="capitalize text-white text-xs font-pixel">${speciesName}</p>
                 `;
-                // Faz com que seja possível clicar na evolução para a ver
+                // Adiciona um evento para que se possa clicar na evolução
                 stageDiv.addEventListener('click', () => fetchPokemon(speciesName));
                 elements.evolutionStages.appendChild(stageDiv);
 
-                // Coloca uma seta entre as evoluções
+                // Adiciona uma seta entre as evoluções
                 if (i < evolutionChain.length - 1) {
                     const arrow = document.createElement('span');
-                    arrow.className = 'evolution-arrow';
+                    arrow.className = 'evolution-arrow text-white';
                     arrow.textContent = '→';
                     elements.evolutionStages.appendChild(arrow);
                 }
@@ -155,47 +136,58 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Função que organiza a linha de evolução
+    // Extrai os nomes dos Pokémon da estrutura da API de evolução
     const parseEvolutionChain = (chain) => {
         const evolutions = [];
         let currentStage = chain;
         while (currentStage) {
             evolutions.push(currentStage.species.name);
-            currentStage = currentStage.evolves_to[0];
+            currentStage = currentStage.evolves_to[0]; // Pega a primeira evolução, se houver
         }
         return evolutions;
     };
 
-    // --- EVENT LISTENERS ---
+    // --- EVENT LISTENERS (INTERATIVIDADE) ---
 
-    // Função que faz os botões funcionar
+    // Configura todos os eventos de clique e de formulário
     const setupEventListeners = () => {
-        // Quando o utilizador pesquisa
         elements.searchForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const searchTerm = elements.searchInput.value.trim();
             if (searchTerm) fetchPokemon(searchTerm);
         });
 
-        // Quando o utilizador clica no botão para trás
         elements.prevButton.addEventListener('click', () => {
             if (currentPokemon.id > 1) fetchPokemon(currentPokemon.id - 1);
         });
 
-        // Quando o utilizador clica no botão para a frente
         elements.nextButton.addEventListener('click', () => {
             if (currentPokemon.id < MAX_POKEMON_ID) fetchPokemon(currentPokemon.id + 1);
         });
     };
 
-    // --- INICIALIZAÇÃO ---
+    // --- LÓGICA DO PWA (PROGRESSIVE WEB APP) ---
+
+    // Regista o Service Worker para que a aplicação funcione offline
+    const registerServiceWorker = () => {
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').then(registration => {
+                    console.log('Service Worker registado com sucesso:', registration.scope);
+                }).catch(error => {
+                    console.log('Falha ao registar o Service Worker:', error);
+                });
+            });
+        }
+    };
+
 
     // Função que inicia tudo
     const init = () => {
         setupEventListeners();
-        fetchPokemon(1); // Busca o primeiro Pokémon (Bulbasaur) assim que a página abre
+        fetchPokemon(1); // Começa mostrando o Pokémon #1 (Bulbasaur)
+        registerServiceWorker(); // Ativa as funcionalidades de PWA
     };
 
-    // Começa a aplicação
     init();
 });

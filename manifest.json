@@ -1,0 +1,68 @@
+{
+  "name": "Web-Pokédex",
+  "short_name": "Pokédex",
+  "description": "Uma Pokédex Clássica construída como uma Progressive Web App.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#dc2626",
+  "theme_color": "#dc2626",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "./icons/icon-29x29.png",
+      "sizes": "29x29",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/icon-40x40.png",
+      "sizes": "40x40",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/icon-57x57.png",
+      "sizes": "57x57",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/icon-58x58.png",
+      "sizes": "58x58",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/icon-60x60.png",
+      "sizes": "60x60",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/icon-80x80.png",
+      "sizes": "80x80",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/icon-87x87.png",
+      "sizes": "87x87",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/icon-114x114.png",
+      "sizes": "114x114",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/icon-120x120.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/icon-180x180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/icon-1024x1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ]
+}
